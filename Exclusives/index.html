@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberpunk Store</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    body {
+      font-family: 'Share Tech Mono', monospace;
+      background: #0a0a0f;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(10, 10, 15, 0.9);
+      padding: 30px;
+      border-radius: 12px;
+      border: 2px solid #ff0095;
+      box-shadow: 0 0 20px #ff0095, 0 0 50px #00f7ff inset;
+      text-align: center;
+      width: 350px;
+      animation: flicker 2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { box-shadow: 0 0 20px #ff0095, 0 0 50px #00f7ff inset; }
+      to   { box-shadow: 0 0 30px #00f7ff, 0 0 60px #ff0095 inset; }
+    }
+
+    h2 {
+      color: #00f7ff;
+      text-shadow: 0 0 8px #ff0095, 0 0 15px #00f7ff;
+    }
+
+    input {
+      padding: 12px;
+      width: 100%;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: #111;
+      color: #0ff;
+      text-align: center;
+      border: 2px solid #ff0095;
+      box-shadow: 0 0 8px #ff0095;
+    }
+
+    button {
+      background: linear-gradient(90deg, #ff0095, #00f7ff);
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: bold;
+      color: black;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px #fff;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00f7ff, 0 0 40px #ff0095;
+    }
+
+    .store {
+      display: none;
+    }
+
+    .item {
+      background: rgba(20, 20, 30, 0.8);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+      border: 1px solid #00f7ff;
+      box-shadow: 0 0 12px #00f7ff;
+      text-align: left;
+      transition: 0.3s;
+    }
+
+    .item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px #ff0095;
+    }
+
+    .price {
+      color: #0f0;
+      font-weight: bold;
+      text-shadow: 0 0 8px #0f0;
+    }
+
+    #error {
+      color: #ff0033;
+      text-shadow: 0 0 10px #ff0033;
+      display: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Page -->
+  <div class="container" id="auth-container">
+    <h2>🔑 Enter Auth Key</h2>
+    <input type="password" id="authKeyInput" placeholder="Enter your key">
+    <button onclick="checkAuth()">Login</button>
+    <p id="error">❌ Invalid Key</p>
+  </div>
+
+  <!-- Store Page -->
+  <div class="container store" id="store-container">
+    <h2>🛒 Cyberpunk Store</h2>
+    <div class="item">
+      <h3>Neon Katana</h3>
+      <p class="price">💲250</p>
+    </div>
+    <div class="item">
+      <h3>Holographic Jacket</h3>
+      <p class="price">💲400</p>
+    </div>
+    <div class="item">
+      <h3>Cybernetic Arm</h3>
+      <p class="price">💲600</p>
+    </div>
+    <div class="item">
+      <h3>Neon Visor</h3>
+      <p class="price">💲150</p>
+    </div>
+  </div>
+
+  <script>
+    const AUTH_KEY = "7BPJ42X2tIjbDr8baR3X6A8xFjhyvQnB";
+
+    function checkAuth() {
+      const input = document.getElementById("authKeyInput").value;
+      const errorMsg = document.getElementById("error");
+
+      if (input === AUTH_KEY) {
+        document.getElementById("auth-container").style.display = "none";
+        document.getElementById("store-container").style.display = "block";
+      } else {
+        errorMsg.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
